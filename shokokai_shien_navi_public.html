@@ -1,0 +1,122 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>商工会 支援ナビ</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;background:#f3f6f8;color:#1f2937}header{background:#164e63;color:white;padding:24px 18px;position:sticky;top:0;z-index:5}h1{margin:0 0 5px;font-size:25px}header p{margin:0;font-size:14px}.wrap{max-width:1000px;margin:auto;padding:16px}.card{background:white;border-radius:15px;padding:18px;margin-bottom:15px;box-shadow:0 3px 14px #0001}h2{font-size:19px;margin:0 0 12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.nav{display:flex;gap:8px;overflow:auto;margin-bottom:15px}.nav button{white-space:nowrap;width:auto}button,.link{border:0;border-radius:11px;padding:14px;background:#e7f2f5;color:#164e63;font-weight:700;text-decoration:none;display:block;width:100%;text-align:left;cursor:pointer}.primary{background:#0f766e;color:white;text-align:center;margin-top:10px}textarea{width:100%;padding:12px;border:1px solid #d1d5db;border-radius:10px;font:inherit}.result{white-space:pre-wrap;line-height:1.7;background:#f8fafc;padding:14px;border-radius:10px;margin-top:12px}.tag{display:inline-block;background:#eef2ff;border-radius:99px;padding:5px 9px;margin:3px;font-size:12px}.note{font-size:12px;color:#64748b;line-height:1.7}.hide{display:none}footer{text-align:center;padding:25px;color:#64748b;font-size:12px}
+</style></head><body>
+<header><h1>商工会 支援ナビ</h1><p style="margin:0;color:#64748b">補助金・融資・災害支援などを探すための事業者向け案内</p><p>相談内容を整理し、制度・様式・確認先へつなぐ職員向け実務ツール</p></header>
+<main class="wrap">
+<div class="nav"><button onclick="go('相談')">相談整理</button><button onclick="go('災害')">災害・被災</button><button onclick="go('補助金')">補助金</button><button onclick="go('融資')">融資</button><button onclick="go('行政')">行政窓口</button><button onclick="go('文書')">文書作成</button></div>
+
+<section class="card" id="相談"><h2>① あなたの状況から支援制度を探す</h2>
+<p style="font-size:13px;color:#64748b">いくつかの質問に答えると、今の状況で確認したい支援制度や相談先を整理します。</p>
+
+<div class="grid">
+<button onclick="setMode('災害')">地震・災害</button>
+<button onclick="setMode('補助金')">補助金を探したい</button>
+<button onclick="setMode('融資')">融資・資金繰り</button>
+<button onclick="setMode('創業')">創業・開業</button>
+<button onclick="setMode('経営')">経営改善</button>
+<button onclick="setMode('承継')">事業承継</button>
+</div>
+
+<div id="diag" class="hide" style="margin-top:15px">
+<div id="questions"></div>
+<button class="primary" onclick="diagnose()">診断する</button>
+</div>
+<div id="diagnosis" class="hide result"></div>
+</section>
+
+<section class="card" id="災害"><h2>② 災害・被災</h2><div class="grid">
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/280961.html">熊本県｜くまもと事業者再出発支援補助金<br>要綱・手引き・Q&A・申請様式</a>
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/50733.html">熊本県｜中小企業者向け融資制度</a>
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/1/274517.html">熊本県｜令和8年熊本地震 支援情報</a>
+<a class="link" target="_blank" href="https://www.town.hikawa.kumamoto.jp/kiji0036848/index.html">氷川町｜地震関連事業者情報</a></div>
+<p><span class="tag">罹災証明</span><span class="tag">被災証明</span><span class="tag">直接・間接被害</span><span class="tag">被害写真</span><span class="tag">見積書</span><span class="tag">発注済みか</span></p></section>
+
+<section class="card" id="補助金"><h2>③ 補助金</h2><div class="grid">
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/280961.html">県｜再出発支援補助金</a>
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/">県｜商工振興金融課</a>
+<a class="link" target="_blank" href="https://www.chusho.meti.go.jp/">中小企業庁</a>
+<a class="link" target="_blank" href="https://www.jizokukanb.com/jizokuka_r6h/">持続化補助金｜公式サイト</a></div>
+<p class="note">申請支援では、制度案内・要件確認の補助・計画作成の助言等と、採択・交付決定等の最終判断を区別します。</p></section>
+
+<section class="card" id="融資"><h2>④ 融資・資金繰り</h2><div class="grid">
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/50733.html">熊本県｜制度融資</a>
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/277230.html">熊本県｜令和8年熊本地震 新資金</a>
+<a class="link" target="_blank" href="https://www.jfc.go.jp/">日本政策金融公庫</a>
+<a class="link" target="_blank" href="https://www.kumamoto-cgc.or.jp/">熊本県信用保証協会</a></div>
+<p><span class="tag">必要額</span><span class="tag">設備・運転</span><span class="tag">既存借入</span><span class="tag">返済額</span><span class="tag">売上推移</span><span class="tag">資金繰り6か月</span></p></section>
+
+<section class="card" id="行政"><h2>⑤ 行政・確認窓口</h2><div class="grid">
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/274549.html">熊本県｜地震・中小企業相談窓口</a>
+<a class="link" target="_blank" href="https://www.pref.kumamoto.jp/soshiki/61/">熊本県｜商工振興金融課</a>
+<a class="link" target="_blank" href="https://www.town.hikawa.kumamoto.jp/">氷川町役場</a>
+<a class="link" target="_blank" href="https://www.city.yatsushiro.lg.jp/">八代市</a></div>
+<div class="result">行政へ確認する項目
+①対象になるか　②必要書類　③対象経費　④申請前の発注・着手可否
+⑤他制度との併用　⑥判断が分かれる場合の最終確認先</div></section>
+
+<section class="card" id="文書"><h2>⑥ 実務文書</h2><div class="grid"><button onclick="doc('行政')">行政への確認事項</button><button onclick="doc('事業者')">事業者向け説明文</button><button onclick="doc('内部')">相談内容の整理メモ</button><button onclick="doc('責任')">申請前の確認事項</button></div><div id="docout" class="hide result"></div></section>
+
+<section class="card"><h2>重要事項</h2><p class="note">制度の対象可否、採択、交付決定等を保証するものではありません。必ず最新の公募要領・要綱・担当機関の案内を確認してください。現在の制度リンクは2026年10月2日時点の公式情報をもとに設定しています。</p></section>
+
+<div class="card" style="margin-top:20px;background:#f8fafc">
+<p style="font-size:13px;margin:0"><b>ご注意</b><br>
+本サイトは支援制度を探すための情報整理ツールです。制度の利用可否、補助対象経費、融資の実行、採択・交付決定等については、各制度の実施機関の最新情報・審査・判断が優先されます。</p>
+</div>
+</main><footer>商工会 支援ナビ｜職員向け試作版</footer>
+<script>
+function go(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+function analyze(){let c=document.getElementById('case').value.trim();if(!c){alert('相談内容を入力してください');return}let r='【相談分類】'+(type||'未選択')+'\n\n【① 状況整理】\n'+c+'\n\n【② 最初に確認】\n・所在地・業種・規模\n・営業状況\n・申請期限\n・対象経費\n・発注・契約・支払時期\n・他制度との重複';if(type==='災害・被災'||/地震|被災|半壊|全壊|罹災|被災証明/.test(c))r+='\n\n【③ 被災案件】\n・直接被害か間接被害か\n・罹災証明／被災証明\n・被災前から存在する設備・施設か\n・復旧か再建・販路開拓か\n・発注・着工済みか\n・写真・見積書の有無';r+='\n\n【④ 次に見る場所】\n上の「災害・被災」「補助金」「融資」から公式情報を確認。\n\n【⑤ 行政確認】\n対象要件／対象経費／期限／必要書類／申請前着手／併用可否を確認。\n\n【⑥ 商工会の対応】\n制度案内、要件確認の補助、計画整理・助言を行い、最終判断は実施機関によることを説明。';let o=document.getElementById('out');o.textContent=r;o.classList.remove('hide')}
+function doc(k){let c=document.getElementById('case').value||'（事業者の状況を記入）',r='';if(k==='行政')r='【行政確認】\n事業者の状況：'+c+'\n\n①対象になるか\n②必要書類\n③対象経費\n④申請前着手の可否\n⑤他制度との併用可否\n⑥その他注意事項';if(k==='事業者')r='【事業者への説明】\n利用できる可能性のある制度を確認します。ただし、対象要件・対象経費等は制度の実施機関による最終確認が必要です。';if(k==='内部')r='【相談内容の整理メモ】\n相談内容：'+c+'\n\n確認先：国・県・市町村・その他\n確認事項：対象要件／経費／期限／証明書類／申請前着手／併用';if(k==='責任')r='【申請支援に関する注意】\n商工会は制度案内、必要事項の整理、計画作成に関する助言等を行います。採択・交付決定・補助対象経費等を保証するものではありません。申請内容は事業者自身で最終確認してください。';let o=document.getElementById('docout');o.textContent=r;o.classList.remove('hide')}
+
+let mode="";
+function setMode(m){
+ mode=m;
+ const q=document.getElementById("questions");
+ let s="";
+ if(m==="災害"){
+  s='<p><b>被災案件について確認します</b></p><label>罹災証明・被災証明はありますか？</label><select id="q1"><option>ある</option><option>ない</option><option>確認中</option></select><br><br><label>主な相談は？</label><select id="q2"><option>施設・設備の復旧</option><option>資金繰り・融資</option><option>売上減少・経営への影響</option><option>その他</option></select>';
+ }else if(m==="補助金"){
+  s='<p><b>補助金の方向を確認します</b></p><label>目的は？</label><select id="q2"><option>被災からの復旧</option><option>販路開拓・売上向上</option><option>設備投資・生産性向上</option><option>創業・新事業</option><option>その他</option></select>';
+ }else if(m==="融資"){
+  s='<p><b>資金需要を確認します</b></p><label>資金の目的は？</label><select id="q2"><option>地震による復旧</option><option>運転資金</option><option>設備資金</option><option>創業資金</option></select>';
+ }else{
+  s='<p><b>相談内容を入力してください</b></p><textarea id="free" rows="4" placeholder="例：地震で店舗の設備が壊れ、営業再開に向けた資金について知りたい（氏名・住所などは入力しないでください）"></textarea>';
+ }
+ q.innerHTML=s;
+ document.getElementById("diag").classList.remove("hide");
+ document.getElementById("diagnosis").classList.add("hide");
+}
+function diagnose(){
+ let r="";
+ if(mode==="災害"){
+  const q1=document.getElementById("q1").value,q2=document.getElementById("q2").value;
+  r="【診断結果：令和8年熊本地震】\n\n";
+  if(q2==="施設・設備の復旧"){
+   r+="■ まず確認\n・くまもと事業者再出発支援補助金\n・被害状況、罹災証明／被災証明\n・復旧対象となる施設・設備\n・申請・交付手続きの時期\n\n→ 熊本県「再出発支援補助金」を開く\n";
+  }else if(q2==="資金繰り・融資"){
+   r+="■ まず確認\n・金融円滑化特別資金（令和8年熊本地震枠）\n・セーフティネット保証対応枠\n・小規模事業者おうえん資金（令和8年熊本地震分）\n\n→ 「融資」ページから県公式制度を確認\n";
+  }else{
+   r+="■ まず確認\n・県の地震関連事業者支援情報\n・売上減少等の状況\n・利用可能な補助金・融資制度\n・経営相談窓口\n\n→ 熊本県「令和8年熊本地震情報」を確認\n";
+  }
+  r+="\n■ 証明書について\n"+q1+"（最終的な要件は各制度の最新資料で確認）";
+ }else if(mode==="補助金"){
+  const q=document.getElementById("q2").value;
+  r="【補助金診断】\n\n目的："+q+"\n\n";
+  if(q==="被災からの復旧") r+="→ まず「災害・被災」ページへ\n→ 令和8年熊本地震の県・国制度を確認";
+  else if(q==="販路開拓・売上向上") r+="→ 「補助金」ページへ\n→ 持続化補助金等の最新公募情報を確認";
+  else if(q==="設備投資・生産性向上") r+="→ 「補助金」ページへ\n→ 生産性向上・設備投資系制度を確認";
+  else r+="→ 「補助金」ページで国・県・市町村の制度を確認";
+ }else if(mode==="融資"){
+  const q=document.getElementById("q2").value;
+  r="【融資診断】\n\n目的："+q+"\n\n";
+  if(q==="地震による復旧") r+="→ 熊本県「令和8年熊本地震 新資金」を確認\n→ 罹災証明・被災証明、売上減少等の要件を確認";
+  else if(q==="創業資金") r+="→ 熊本県創業者支援資金・日本政策金融公庫等を確認";
+  else r+="→ 熊本県制度融資・日本政策金融公庫・信用保証協会を確認";
+ }else{
+  r="【相談メモ】\n\n"+(document.getElementById("free")?.value||"")+"\n\n→ 聞き取り内容を整理し、該当する「補助金」「融資」「行政」ページへ進んでください。";
+ }
+ const o=document.getElementById("diagnosis");o.textContent=r;o.classList.remove("hide");
+}
+</script></body></html>
